@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro Outline By Normal Experimental - Documentation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3a506b;
+            --secondary-color: #1c2541;
+            --accent-color: #5bc0be;
+            --text-color: #0b132b;
+            --light-color: #ffffff;
+            --code-bg: #f0f0f0;
+            --parameter-bg: #e6f7f6;
+            --border-color: #ddd;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #fafafa;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--light-color);
+            padding: 50px 0 30px;
+            text-align: center;
+        }
+
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        /* Navigation */
+        .nav-container {
+            background-color: var(--secondary-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--light-color);
+            padding: 8px 15px;
+            margin: 0 5px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            text-decoration: none;
+        }
+
+        /* Main Content */
+        main {
+            padding: 40px 0;
+        }
+
+        section {
+            margin-bottom: 60px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin: 30px 0 15px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        /* Features */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .feature-card {
+            background-color: var(--light-color);
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        /* Parameters */
+        .parameter-group {
+            background-color: var(--light-color);
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .parameter {
+            padding: 15px;
+            margin-bottom: 15px;
+            background-color: var(--parameter-bg);
+            border-radius: 6px;
+        }
+
+        .parameter-name {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 5px;
+            color: var(--primary-color);
+        }
+
+        .parameter-type {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--light-color);
+            font-size: 0.8rem;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        /* Usage Tips */
+        .tips-list {
+            list-style-type: none;
+        }
+
+        .tips-list li {
+            margin-bottom: 25px;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .tips-list li:before {
+            content: "💡";
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+
+        /* Examples */
+        .examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .example-card {
+            background-color: var(--light-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .example-img {
+            width: 100%;
+            height: 180px;
+            background-color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light-color);
+        }
+
+        .example-img img {
+            max-width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .example-desc {
+            padding: 15px;
+        }
+
+        /* Troubleshooting */
+        .troubleshooting-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .troubleshooting-table th, 
+        .troubleshooting-table td {
+            border: 1px solid var(--border-color);
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        .troubleshooting-table th {
+            background-color: var(--secondary-color);
+            color: var(--light-color);
+        }
+
+        .troubleshooting-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        /* Implementation Section */
+        .code-block {
+            background-color: var(--code-bg);
+            padding: 20px;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-family: 'Courier New', Courier, monospace;
+            line-height: 1.5;
+        }
+
+        .code-tabs {
+            display: flex;
+            margin-bottom: -1px;
+        }
+
+        .code-tab {
+            padding: 10px 15px;
+            background-color: #e0e0e0;
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+            margin-right: 5px;
+            cursor: pointer;
+        }
+
+        .code-tab.active {
+            background-color: var(--code-bg);
+            border: 1px solid #ccc;
+            border-bottom: none;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary-color);
+            color: var(--light-color);
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            margin: 15px 0;
+        }
+
+        .footer-links a {
+            color: var(--light-color);
+            margin: 0 10px;
+        }
+
+        .copyright {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .features, .examples {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-container {
+                position: static;
+            }
+
+            nav {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav a {
+                margin: 5px 0;
+                width: 80%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <h1>Pro Outline By Normal Experimental</h1>
+            <p class="subtitle">Advanced normal-based outline shader for Unity URP</p>
+        </div>
+    </header>
+
+    <div class="nav-container">
+        <div class="container">
+            <nav>
+                <a href="#overview">Overview</a>
+                <a href="#parameters">Parameters</a>
+                <a href="#usage">Usage Tips</a>
+                <a href="#examples">Examples</a>
+                <a href="#troubleshooting">Troubleshooting</a>
+                <a href="#implementation">Implementation</a>
+                <a href="#download">Download</a>
+            </nav>
+        </div>
+    </div>
+
+    <main class="container">
+        <section id="overview">
+            <h2>Overview</h2>
+            <p>
+                The <strong>Pro Outline By Normal Experimental</strong> shader creates high-quality outlines based on normal map differences and depth values. It's designed to produce clean, precise outlines with extensive customization options for artistic control.
+            </p>
+
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <div class="feature-title">Precise Edge Detection</div>
+                    <p>Uses normal cusp detection to create accurate outlines along geometry edges.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mountain"></i>
+                    </div>
+                    <div class="feature-title">Distance-Based Fading</div>
+                    <p>Intelligent depth-based fade with exponential falloff for natural distance attenuation.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-sliders-h"></i>
+                    </div>
+                    <div class="feature-title">High Customization</div>
+                    <p>Extensive parameters for precise artistic control over outline appearance.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <div class="feature-title">Stylization Options</div>
+                    <p>Paper/ink mode for stylized rendering effects.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="parameters">
+            <h2>Parameters</h2>
+
+            <div class="parameter-group">
+                <h3>Outline Appearance</h3>
+                
+                <div class="parameter">
+                    <span class="parameter-name">Outline Color</span>
+                    <span class="parameter-type">Color</span>
+                    <p>Sets the color of the outline effect.</p>
+                </div>
+
+                <div class="parameter">
+                    <span class="parameter-name">Thickness</span>
+                    <span class="parameter-type">Float</span>
+                    <p>Controls the width of the outline. Higher values create thicker lines.</p>
+                </div>
+            </div>
+
+            <div class="parameter-group">
+                <h3>Edge Detection</h3>
+                
+                <div class="parameter">
+                    <span class="parameter-name">Use Angle Edge Threshold</span>
+                    <span class="parameter-type">Boolean</span>
+                    <p>When enabled, the shader uses angular differences between normals for edge detection.</p>
+                </div>
+
+                <div class="parameter">
+                    <span class="parameter-name">Normal Threshold</span>
+                    <span class="parameter-type">Float</span>
+                    <p>Controls edge detection sensitivity using simple normal differences. Used when "Use Angle Edge Threshold" is disabled.</p>
+                </div>
+
+                <div class="parameter">
+                    <span class="parameter-name">Edge Threshold</span>
+                    <span class="parameter-type">Float</span>
+                    <p>Determines how sensitive the edge detection is. Lower values detect more subtle edges, higher values only catch prominent edges.</p>
+                </div>
+
+                <div class="parameter">
+                    <span class="parameter-name">Normal Intensity</span>
+                    <span class="parameter-type">Float</span>
+                    <p>Multiplier for the strength of normal-based edges. Higher values create more pronounced outlines.</p>
+                </div>
+
+                <div class="parameter">
+                    <span class="parameter-name">Depth Intensity</span>
+                    <span class="parameter-type">Float</span>
+                    <p>Multiplier for the strength of depth-based edges. Higher values create more pronounced outlines at object boundaries.</p>
+                </div>
+            </div>
+
+            <div class="parameter-group">
+                <h3>Depth Control</h3>
+                
+                <div class="parameter">
+                    <span class="parameter-name">Use Depth Fade</span>
+                    <span class="parameter-type">Boolean</span>
+                    <p>When enabled, outlines will gradually fade out with distance using the Max/Fade Distance parameters.</p>
+                </div>
+
+                <div class="parameter">
+                    <span class="parameter-name">Max Distance</span>
+                    <span class="parameter-type">Float</span>
+                    <p>Maximum distance from the camera where outlines will render. Objects beyond this distance won't show outlines.</p>
+                </div>
+
+                <div class="parameter">
+                    <span class="parameter-name">Fade Distance</span>
+                    <span class="parameter-type">Float</span>
+                    <p>Distance at which outlines begin to fade out. Should be less than Max Distance.</p>
+                </div>
+            </div>
+
+            <div class="parameter-group">
+                <h3>Fade Options</h3>
+                
+                <div class="parameter">
+                    <span class="parameter-name">Use Exponential Fade</span>
+                    <span class="parameter-type">Boolean</span>
+                    <p>When enabled, applies an exponential curve to distance fading for more natural-looking falloff.</p>
+                </div>
+
+                <div class="parameter">
+                    <span class="parameter-name">Fade Power</span>
+                    <span class="parameter-type">Float</span>
+                    <p>Controls how quickly the exponential fade occurs. Higher values create a more rapid initial falloff.</p>
+                </div>
+            </div>
+
+            <div class="parameter-group">
+                <h3>Stylization</h3>
+                
+                <div class="parameter">
+                    <span class="parameter-name">Paper Ink</span>
+                    <span class="parameter-type">Boolean</span>
+                    <p>When enabled, creates a stylized ink drawing effect.</p>
+                </div>
+
+                <div class="parameter">
+                    <span class="parameter-name">(Ink Only) - Bit Texture Blend</span>
+                    <span class="parameter-type">Float</span>
+                    <p>Controls the blending of the ink effect when "Paper Ink" is enabled.</p>
+                </div>
+
+                <div class="parameter">
+                    <span class="parameter-name">Albedo Color</span>
+                    <span class="parameter-type">Color</span>
+                    <p>Base color used for the shader. Can be used to tint the underlying surface.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="usage">
+            <h2>Usage Tips</h2>
+            
+            <ul class="tips-list">
+                <li>
+                    <strong>Finding the Right Thickness</strong>
+                    <p>Start with a low Thickness value (around 1.0) and gradually increase until you achieve the desired look. Remember that thicker lines may require adjusting the Edge Threshold to prevent unwanted artifacts.</p>
+                </li>
+                
+                <li>
+                    <strong>Edge Detection Tuning</strong>
+                    <p>For precise geometric outlines, enable "Use Angle Edge Threshold" and adjust the Edge Threshold. For softer, more stylized looks, disable angle thresholding and use the Normal Threshold instead.</p>
+                </li>
+                
+                <li>
+                    <strong>Distance Control</strong>
+                    <p>Set Max Distance based on your scene size - typically slightly less than your camera's far clip plane. Set Fade Distance to 50-80% of your Max Distance for smooth transitions.</p>
+                </li>
+                
+                <li>
+                    <strong>Exponential Fade for Realism</strong>
+                    <p>Enable "Use Exponential Fade" for more natural distance falloff, especially in larger scenes. Higher Fade Power values create a more immediate drop-off of the effect.</p>
+                </li>
+                
+                <li>
+                    <strong>Performance Considerations</strong>
+                    <p>Higher Thickness values require more samples and may impact performance. Consider using lower Edge Threshold values for distant objects to reduce visual noise.</p>
+                </li>
+                
+                <li>
+                    <strong>Stylized Looks</strong>
+                    <p>Enable "Paper Ink" for comic book or cel-shaded styles. Combine with Normal Intensity adjustments to emphasize specific geometric features.</p>
+                </li>
+            </ul>
+        </section>
+
+        <section id="examples">
+            <h2>Examples</h2>
+            
+            <p>Below are examples of different outline settings and effects you can achieve with this shader:</p>
+            
+            <div class="examples">
+                <div class="example-card">
+                    <div class="example-img">
+                        <div>Standard Normal Outline</div>
+                    </div>
+                    <div class="example-desc">
+                        <p><strong>Standard geometric outline</strong> with moderate edge threshold and black outline color.</p>
+                        <p><small>Settings: Normal Intensity: 1.0, Edge Threshold: 0.2, Thickness: 1.0</small></p>
+                    </div>
+                </div>
+                
+                <div class="example-card">
+                    <div class="example-img">
+                        <div>Depth-Based Outline</div>
+                    </div>
+                    <div class="example-desc">
+                        <p><strong>Depth-aware outline</strong> that fades with distance, good for larger scenes.</p>
+                        <p><small>Settings: Use Depth Fade: On, Max Distance: 50, Fade Distance: 30</small></p>
+                    </div>
+                </div>
+                
+                <div class="example-card">
+                    <div class="example-img">
+                        <div>Ink Style</div>
+                    </div>
+                    <div class="example-desc">
+                        <p><strong>Stylized ink effect</strong> using Paper Ink mode with custom bit texture blending.</p>
+                        <p><small>Settings: Paper Ink: On, Bit Texture Blend: 0.5</small></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="troubleshooting">
+            <h2>Troubleshooting</h2>
+            
+            <table class="troubleshooting-table">
+                <tr>
+                    <th>Issue</th>
+                    <th>Solution</th>
+                </tr>
+                <tr>
+                    <td>Jagged or Flickering Outlines</td>
+                    <td>Try increasing the Edge Threshold slightly or reducing the Thickness.</td>
+                </tr>
+                <tr>
+                    <td>Outlines Too Subtle</td>
+                    <td>Increase Normal Intensity or Depth Intensity, or reduce Edge Threshold.</td>
+                </tr>
+                <tr>
+                    <td>Unwanted Outlines</td>
+                    <td>Increase Edge Threshold to ignore smaller normal variations.</td>
+                </tr>
+                <tr>
+                    <td>Outlines Disappearing Too Quickly</td>
+                    <td>Adjust Fade Distance and Max Distance values, or reduce Fade Power if using exponential fade.</td>
+                </tr>
+                <tr>
+                    <td>Missing Outlines on Some Objects</td>
+                    <td>Ensure that DepthNormalPrepass is enabled in your Renderer Feature settings.</td>
+                </tr>
+                <tr>
+                    <td>Performance Issues</td>
+                    <td>Try reducing Thickness, increase Edge Threshold, or limit the effect to closer objects.</td>
+                </tr>
+            </table>
+        </section>
+
+        <section id="implementation">
+            <h2>Implementation</h2>
+            
+            <h3>Setting Up the Renderer Feature</h3>
+            <p>To use this shader in your URP project, you'll need to add the ProArtisticOutlineRenderer as a Renderer Feature in your URP Asset.</p>
+            
+            <div class="code-block">
+// 1. Add the ProArtisticOutlineRenderer.cs script to your project
+// 2. In your URP Renderer Asset, click "Add Renderer Feature" 
+// 3. Select "Pro Artistic Outline Renderer"
+// 4. Configure the settings in the inspector
+            </div>
+            
+            <h3>Required URP Setup</h3>
+            <p>For best results, ensure your URP settings include:</p>
+            <ul style="margin-left: 20px; margin-bottom: 20px;">
+                <li>Depth Texture enabled</li>
+                <li>Opaque Texture enabled</li>
+                <li>Depth Normal Prepass enabled (done automatically by the renderer feature)</li>
+            </ul>
+            
+            <h3>Depth-Normal Prepass Importance</h3>
+            <p>
+                The normal-based outline effect requires a depth-normal prepass to work correctly. This ensures all objects contribute to the outline effect, even if they might be skipped in regular rendering optimizations.
+            </p>
+            <p>
+                The ProArtisticOutlineRenderer automatically configures this requirement, but if you're implementing your own version, make sure to include:
+            </p>
+            
+            <div class="code-block">
+// In your renderer feature
+public override void SetupRenderPasses(ScriptableRenderer renderer, in RenderingData renderingData)
+{
+    // Tell URP that this renderer feature needs the depth and normal textures
+    outlinePass.ConfigureInput(ScriptableRenderPassInput.Normal | ScriptableRenderPassInput.Depth);
+}
+            </div>
+        </section>
+        
+        <section id="download">
+            <h2>Download</h2>
+            
+            <p>To get started with the Pro Outline By Normal shader:</p>
+            
+            <div style="display: flex; gap: 20px; margin: 30px 0;">
+                <a href="#" style="display: block; background-color: var(--primary-color); color: white; padding: 15px 30px; border-radius: 6px; text-align: center; font-weight: bold; text-decoration: none; flex: 1; max-width: 300px;">
+                    <i class="fas fa-download" style="margin-right: 10px;"></i>Download Package
+                </a>
+                
+                <a href="https://github.com/username/pro-outline-shader" style="display: block; background-color: #333; color: white; padding: 15px 30px; border-radius: 6px; text-align: center; font-weight: bold; text-decoration: none; flex: 1; max-width: 300px;">
+                    <i class="fab fa-github" style="margin-right: 10px;"></i>GitHub Repository
+                </a>
+            </div>
+            
+            <h3>Requirements</h3>
+            <ul style="margin-left: 20px; margin-bottom: 20px;">
+                <li>Unity 2020.3 or newer</li>
+                <li>Universal Render Pipeline (URP) 10.0 or newer</li>
+                <li>Shader Graph 10.0 or newer</li>
+            </ul>
+            
+            <h3>Installation</h3>
+            <ol style="margin-left: 20px; margin-bottom: 20px;">
+                <li>Import the package into your Unity project</li>
+                <li>Add the ProArtisticOutlineRenderer to your URP renderer</li>
+                <li>Configure the settings to match your artistic requirements</li>
+                <li>See the Examples folder for sample scenes</li>
+            </ol>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#overview">Overview</a>
+                <a href="#parameters">Parameters</a>
+                <a href="#usage">Usage Tips</a>
+                <a href="#examples">Examples</a>
+                <a href="#troubleshooting">Troubleshooting</a>
+                <a href="#implementation">Implementation</a>
+                <a href="#download">Download</a>
+            </div>
+            
+            <div class="copyright">
+                © 2025 Pro Outline By Normal Experimental - Made with <i class="fa fa-heart" style="color: #e25555;"></i> for the Unity community
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple script to highlight the active navigation item
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('nav a');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
